@@ -2,17 +2,18 @@
 
 require_relative 'game'
 
-def create_new_game
-  new_game = Game.new(game_rules)
-  new_game.start_game
-  repeat_game
+# <summery> The program starting point <summery>
+class Main
+  def self.create_new_game
+    Game.start_game
+  end
+
+  def self.repeat_game
+    puts "\nDo you want to play again? Y/N"
+
+    answer = gets.strip.downcase
+    %w[yes y].include?(answer) ? create_new_game : exit
+  end
 end
 
-def repeat_game
-  puts 'Do you want to play again? Y/N'
-
-  answer = gets.strip.downcase
-  %w[yes y].include?(answer) ? create_new_game : exit
-end
-
-create_new_game
+Main.create_new_game

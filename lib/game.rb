@@ -1,30 +1,49 @@
 # frozen_string_literal: true
 
-require_relative 'player'
-require_relative 'game_rules'
+require_relative 'code_breaker'
+require_relative 'code_maker'
 
+# <summery> The mastermind game intro <summery>
 class Game
+  def self.start_game
+    player_choice = choose_game_type
 
-  def initialise
-
-    @player = Player.new('Player 1')
+    case player_choice
+    when 'CodeMaker'
+      CodeMaker.start
+    when 'CodeBreaker'
+      CodeBreaker.start
+    end
   end
 
-  def start_game
-    #prompt for game type
+  def self.choose_game_type
+    correct_answer = false
+    intro_text
 
-    GameRules.display_instructions_codebreaker
+    until correct_answer
+      answer = gets.strip.downcase
 
+      case answer
+      when 'm'
+        choice = 'CodeMaker'
+        correct_answer = true
+      when 'b'
+        choice = 'CodeBreaker'
+        correct_answer = true
+      else
+        puts 'That is an incorrect response, try again'
+      end
+    end
 
-
-    #start breaker game
-    #or
-    #start maker game
+    choice
   end
 
-end
-
-def start_new_game
-  new_game = Mastermind.new
-  new_game.start_game
+  def self.intro_text
+    system 'clear'
+    puts 'Mastermind is a game where one player tries to break the others code'
+    puts 'Do you want to create the code and have the computer try to break it?'
+    puts 'Or do you want to try to break a computer generated code?'
+    puts "\nEnter 'M' to be the code maker"
+    puts "Enter 'B' to be the code breaker"
+  end
 end
