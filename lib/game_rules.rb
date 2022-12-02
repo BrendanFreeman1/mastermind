@@ -7,12 +7,11 @@ class GameRules
     puts 'The computer will generate a code for the player to break'
     puts 'The code is a random sequence of four digits'
     puts "The digits can be either '1' '2' '3' '4' '5' or '6'"
-    puts "Multiples of the same digit can appear in the code\n"
-    puts ''
+    puts "Multiples of the same digit can appear in the code\n\n"
     puts 'The player must select the correct sequence of numbers within twelve guesses'
     puts 'For each guess the player will be given a responce indicating how close their guess was'
     puts "The player will recieve a '✔' for each correct number in the correct position"
-    puts "The player will recieve a 'O' for each correct number not in the correct position"
+    puts "The player will recieve a '■' for each correct number not in the correct position"
     puts "The response will never indicate which of the numbers are in the correct position\n"
     puts "If you guess the correct digits in the correct order, you win\n"
   end

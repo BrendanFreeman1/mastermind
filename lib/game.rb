@@ -6,9 +6,8 @@ require_relative 'code_maker'
 # <summery> The mastermind game intro <summery>
 class Game
   def self.start_game
-    player_choice = choose_game_type
 
-    case player_choice
+    case choose_game_type
     when 'CodeMaker'
       CodeMaker.start
     when 'CodeBreaker'
