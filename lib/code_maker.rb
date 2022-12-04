@@ -6,5 +6,13 @@ require_relative 'game_rules'
 class CodeMaker
   def self.start
     GameRules.display_instructions_codemaker
+
+    puts "\nPress ENTER to start"
+    gets
+    system 'clear'
+
+    game_loop
   end
+
+  def self.game_loop; end
 end

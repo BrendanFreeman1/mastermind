@@ -1,6 +1,6 @@
 require_relative 'main'
 require_relative 'game'
-require_relative 'guess'
+require_relative 'player_guess'
 require_relative 'game_rules'
 
 # <summery> The code breaker game type <summery>
@@ -25,8 +25,7 @@ class CodeBreaker
 
     until guesses >= 12
       puts "\nYou have #{12 - guesses} guesses left"
-      guess = Guess.new
-      guess = guess.player_guess
+      guess = PlayerGuess.new.player_guess
 
       game_end_win if win?(guess)
 
@@ -53,11 +52,11 @@ class CodeBreaker
       end
     end
 
-    # Remove duplicates in guess
+    # Remove 0 and duplicates in guess
     array = guess.split('') - ['0']
     guess = array.uniq.join('')
 
-    # Add a 0 for each correct number in the incorrect positon
+    # Add a ■ for each correct number in the incorrect positon
     guess.each_char do |char|
       count = code.count(char)
       count.times do
@@ -71,7 +70,7 @@ class CodeBreaker
   def self.generate_code
     code = ''
 
-    4.times do |_i|
+    4.times do
       code += rand(1..6).to_s
     end
 
@@ -92,6 +91,7 @@ class CodeBreaker
 
   def self.game_end_loose
     puts "\nYou didn't work out the code"
+    puts "The code was #{@code}"
     Main.repeat_game
   end
 end

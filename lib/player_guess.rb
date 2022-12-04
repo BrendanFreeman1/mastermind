@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # <summery> Functions for getting and checking the players guess <summery>
-class Guess
+class PlayerGuess
   def player_guess
-    puts "Enter your guess for this turn"
+    puts 'Enter your guess for this turn'
     puts "\nYour Guess"
     correct_input = false
 
     until correct_input
-      guess = gets.strip 
+      guess = gets.strip
 
       correct_input = check_guess_range(guess)
 

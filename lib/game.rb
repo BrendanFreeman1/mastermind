@@ -6,7 +6,6 @@ require_relative 'code_maker'
 # <summery> The mastermind game intro <summery>
 class Game
   def self.start_game
-
     case choose_game_type
     when 'CodeMaker'
       CodeMaker.start
@@ -42,7 +41,7 @@ class Game
     puts 'Mastermind is a game where one player tries to break the others code'
     puts 'Do you want to create the code and have the computer try to break it?'
     puts 'Or do you want to try to break a computer generated code?'
-    puts "\nEnter 'M' to be the code maker"
-    puts "Enter 'B' to be the code breaker"
+    puts "\nEnter 'M' to be the code Maker"
+    puts "Enter 'B' to be the code Breaker"
   end
 end
