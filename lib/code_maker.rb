@@ -20,13 +20,16 @@ class CodeMaker
   end
 
   def self.game_loop
+    combinations = Array.new(Guess.possible_combinations)
     code = player_code
     guesses = 0
 
-    until guesses >= 1
-      guess = Guess.computer_guess(code)
+    until guesses >= 12
+      guess = Guess.computer_guess(combinations)
 
       computer_win if win?(code, guess)
+
+      combinations = Guess.calculate_from_guess(combinations, code, guess)
 
       guesses += 1
     end  
@@ -52,7 +55,7 @@ class CodeMaker
   end
 
   def self.computer_lose
-    puts "The computer couldnt crack your code!!"
+    puts "The computer couldn't crack your code!!"
     Main.repeat_game
   end
 

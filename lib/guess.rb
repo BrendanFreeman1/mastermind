@@ -4,6 +4,7 @@ class Guess
 
   def self.test_guess(code, guess)
     temp_code = code.dup
+    temp_guess = guess.dup
     responce = "\n"
 
     # Add a ✔ for each correct number in the correct position
@@ -11,18 +12,18 @@ class Guess
       code.each_char.with_index do |code_char, j|
         if i == j && guess_char == code_char
           responce << '✔'
-          guess[i] = '0'
+          temp_guess[i] = '0'
           temp_code[j] = '0'
         end
       end
     end
 
     # Remove 0 and duplicates in guess
-    array = guess.split('') - ['0']
-    guess = array.uniq.join('')
+    array = temp_guess.split('') - ['0']
+    temp_guess = array.uniq.join('')
 
     # Add a ■ for each correct number in the incorrect positon
-    guess.each_char do |char|
+    temp_guess.each_char do |char|
       count = temp_code.count(char)
       count.times do
         responce << '■'
@@ -60,28 +61,26 @@ class Guess
       combinations.push(number) if !number["0"] 
     end
 
-    return combinations
+    combinations
   end
 
-  def self.computer_guess(code)
-    combinations = Array.new
-    combinations = possible_combinations
-    saved_combinations = Array.new
-    initial_guess = "1122"
+  def self.computer_guess(combinations)
+    puts "The computers guessed: #{combinations[0]}"
 
-    puts "The computers guessed: #{initial_guess}"
+    combinations[0]
+  end
 
-    response = test_guess(code, initial_guess)
+  def self.calculate_from_guess(combinations, code, guess)
+    response = test_guess(code, guess)
 
     #test every number in possible combinations and save the ones that get the same response
     combinations.each do |combination|
-      saved_combinations.push(combination) if test_guess(code, combination) == response
+      if test_guess(code, combination) != response
+      #I THINK THIS IS WIPING OUT THE ENTIRE ARRAY
+      #  combinations = combinations.delete(combination) 
+      end
     end
 
+    combinations
   end
-
-
-
-
-
 end
