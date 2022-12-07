@@ -24,9 +24,11 @@ class CodeMaker
     code = player_code
     guesses = 0
 
-    until guesses >= 12
+    until guesses >= 120
+      puts combinations.length
+      #Assign computer guess
       guess = Guess.computer_guess(combinations)
-
+      #check if it won
       computer_win if win?(code, guess)
 
       combinations = Guess.calculate_from_guess(combinations, code, guess)

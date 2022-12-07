@@ -41,44 +41,29 @@ class Guess
     combinations = Array.new
     number = ""
 
-    1.upto(6) do |i|
-      number = "111#{i}"
-      combinations.push(number) if !number["0"]
-    end
-
-    11.upto(66) do |i|
-      number = "11#{i+1}"
-      combinations.push(number) if !number["0"]
-    end
-
-    111.upto(666) do |i|
-      number = "1#{i}"
-      combinations.push(number) if !number["0"] 
-    end
-
     1111.upto(6666) do |i|
       number = "#{i}"
-      combinations.push(number) if !number["0"] 
+      if !number["0"] && !number["7"] && !number["8"] && !number["9"]
+        combinations.push(number) 
+      end      
     end
 
     combinations
   end
 
   def self.computer_guess(combinations)
-    puts "The computers guessed: #{combinations[0]}"
 
-    combinations[0]
+    random_number = rand(0..combinations.length-1)
+    puts "The computers guessed: #{combinations[random_number]}"
+
+    combinations[random_number]
   end
 
   def self.calculate_from_guess(combinations, code, guess)
     response = test_guess(code, guess)
 
-    #test every number in possible combinations and save the ones that get the same response
     combinations.each do |combination|
-      if test_guess(code, combination) != response
-      #I THINK THIS IS WIPING OUT THE ENTIRE ARRAY
-      #  combinations = combinations.delete(combination) 
-      end
+      
     end
 
     combinations
