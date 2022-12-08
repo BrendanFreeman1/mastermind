@@ -53,9 +53,10 @@ class Guess
 
   def self.computer_guess(combinations, guesses)
     random_number = rand(0..combinations.length-1)
-    puts "Computer guess #{guesses}: #{combinations[random_number]}"
+    guess = combinations[random_number]
+    puts "Computer guess #{guesses}: #{guess}"
 
-    combinations[random_number]
+    guess
   end
 
   def self.calculate_from_guess(combinations, code, guess)
@@ -69,4 +70,5 @@ class Guess
 
     combinations
   end
+  
 end

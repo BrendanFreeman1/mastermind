@@ -10,8 +10,6 @@ class CodeMaker
   def self.start
     GameRules.display_instructions_codemaker
 
-    Guess.possible_combinations
-
     puts "\nPress ENTER to start"
     gets
     system 'clear'

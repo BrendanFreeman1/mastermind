@@ -45,7 +45,7 @@ class CodeBreaker
       code += rand(1..6).to_s
     end
 
-    code    puts combinations
+    code
   end
 
   def self.win?(code, guess)
