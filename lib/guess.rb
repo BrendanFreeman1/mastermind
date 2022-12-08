@@ -1,7 +1,7 @@
- 
- # <summery> Functions to check how close a guess is to the code <summery>
-class Guess
+# frozen_string_literal: false
 
+# <summery> Functions to check how close a guess is to the code <summery>
+class Guess
   def self.test_guess(code, guess)
     temp_code = code.dup
     temp_guess = guess.dup
@@ -30,29 +30,25 @@ class Guess
       end
     end
 
-    until responce.length == 5
-      responce << '-'
-    end
+    responce << '-' until responce.length == 5
 
     responce
   end
 
   def self.possible_combinations
-    combinations = Array.new
-    number = ""
+    combinations = []
+    number = ''
 
     1111.upto(6666) do |i|
-      number = "#{i}"
-      if !number["0"] && !number["7"] && !number["8"] && !number["9"]
-        combinations.push(number) 
-      end      
+      number = i.to_s
+      combinations.push(number) if !number['0'] && !number['7'] && !number['8'] && !number['9']
     end
 
     combinations
   end
 
   def self.computer_guess(combinations, guesses)
-    random_number = rand(0..combinations.length-1)
+    random_number = rand(0..combinations.length - 1)
     guess = combinations[random_number]
     puts "Computer guess #{guesses}: #{guess}"
 
@@ -63,12 +59,9 @@ class Guess
     response = test_guess(code, guess)
 
     combinations.each do |combination|
-      if test_guess(combination, guess) != response
-        combinations.delete(combination)
-      end      
+      combinations.delete(combination) if test_guess(combination, guess) != response
     end
 
     combinations
   end
-  
 end

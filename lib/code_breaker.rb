@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 require_relative 'main'
 require_relative 'game'
 require_relative 'player_code'
@@ -6,7 +8,6 @@ require_relative 'game_rules'
 
 # <summery> The code breaker game type <summery>
 class CodeBreaker
-
   def self.start
     GameRules.display_instructions_codebreaker
 
