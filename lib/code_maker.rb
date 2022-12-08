@@ -22,15 +22,15 @@ class CodeMaker
   def self.game_loop
     combinations = Array.new(Guess.possible_combinations)
     code = player_code
-    guesses = 0
+    guesses = 1
 
-    until guesses >= 120
+    until guesses >= 13
       puts combinations.length
       #Assign computer guess
-      guess = Guess.computer_guess(combinations)
-      #check if it won
+      guess = Guess.computer_guess(combinations, guesses)
+      #Check if the guess was correct
       computer_win if win?(code, guess)
-
+      #Work out what the next guess should be
       combinations = Guess.calculate_from_guess(combinations, code, guess)
 
       guesses += 1

@@ -51,10 +51,9 @@ class Guess
     combinations
   end
 
-  def self.computer_guess(combinations)
-
+  def self.computer_guess(combinations, guesses)
     random_number = rand(0..combinations.length-1)
-    puts "The computers guessed: #{combinations[random_number]}"
+    puts "Computer guess #{guesses}: #{combinations[random_number]}"
 
     combinations[random_number]
   end
@@ -63,7 +62,9 @@ class Guess
     response = test_guess(code, guess)
 
     combinations.each do |combination|
-      
+      if test_guess(combination, guess) != response
+        combinations.delete(combination)
+      end      
     end
 
     combinations
